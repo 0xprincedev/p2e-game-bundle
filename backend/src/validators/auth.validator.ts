@@ -15,7 +15,7 @@ export const loginValidator = [
 		.withMessage('Password must be at least 6 characters long'),
 ]
 
-export const regiserValidator = [
+export const registerValidator = [
 	body('email')
 		.exists()
 		.withMessage('E-mail is required')
