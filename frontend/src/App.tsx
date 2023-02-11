@@ -1,26 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useMemo } from 'react'
+import { ToastContainer } from 'react-toastify'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { CssBaseline } from '@mui/material'
+import 'react-toastify/dist/ReactToastify.css'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import AppRoutes from 'routes'
+
+const App = () => {
+	const theme = useMemo(
+		() =>
+			createTheme({
+				breakpoints: {
+					values: {
+						xs: 0,
+						sm: 640,
+						md: 992,
+						lg: 1280,
+						xl: 1536,
+					},
+				},
+				palette: {
+					mode: 'dark',
+					background: {
+						default: '#1a1a1a',
+					},
+				},
+				spacing: 4,
+				typography: {
+					button: {
+						textTransform: 'none',
+						fontFamily: 'Urbanist',
+					},
+					fontFamily: 'Urbanist',
+				},
+			}),
+		[]
+	)
+
+	return (
+		<ThemeProvider theme={theme}>
+			<AppRoutes />
+			<CssBaseline />
+			<ToastContainer autoClose={2000} theme='dark' pauseOnFocusLoss={false} pauseOnHover={false} />
+		</ThemeProvider>
+	)
 }
 
-export default App;
+export default App
